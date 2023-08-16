@@ -53,7 +53,7 @@ class UserService {
 Middleware in NESTJS is a way to process requests and responses globally before they reach the route handlers. Middleware functions are executed sequentially in the order they are added to the pipeline. Middleware can modify request/response objects, execute code, or even short-circuit the request-response cycle.
 
 Example:
-```
+```typescript
 @Injectable()
 export class LoggerMiddleware implements NestMiddleware {
   use(req: Request, res: Response, next: NextFunction) {
@@ -68,7 +68,7 @@ Guards in NESTJS are used to protect routes and resources. They determine whethe
 
 Example:
 
-```
+```typescript
 @Injectable()
 export class AuthGuard implements CanActivate {
   canActivate(context: ExecutionContext): boolean | Promise<boolean> {
@@ -84,7 +84,7 @@ Interceptors in NESTJS intercept the execution flow of requests and responses, a
 
 Example:
 
-```
+```typescript
 @Injectable()
 export class TransformInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
@@ -98,7 +98,7 @@ Pipes in NESTJS are used for data transformation and validation. They can be app
 
 Example:
 
-```
+```typescript
 @Post()
 @UsePipes(new ValidationPipe())
 create(@Body() createUserDto: CreateUserDto) {
@@ -117,7 +117,7 @@ A module in NESTJS is a way to organize components, controllers, services, and o
 
 Example:
 
-```
+```typescript
 @Module({
   imports: [DatabaseModule],
   controllers: [UserController],
@@ -130,7 +130,7 @@ export class UserModule {}
 Cross-Origin Resource Sharing (CORS) can be configured in NESTJS using the CorsModule or by setting CORS options in the createNestApplication function. This allows you to define which origins are allowed to access your API, along with other CORS-related settings.
 
 Example:
-```
+```typescript
 const app = await NestFactory.create(AppModule);
 app.enableCors({
   origin: 'https://example.com',
@@ -143,7 +143,7 @@ app.enableCors({
 Filters in NESTJS are used to handle exceptions that occur during request processing. They catch exceptions thrown by route handlers, guards, interceptors, and pipes. Filters can format and modify error responses before sending them to the client. NESTJS provides built-in exception filters, and you can also create custom filters.
 
 Example:
-```
+```typescript
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
   catch(exception: HttpException, host: ArgumentsHost) {
